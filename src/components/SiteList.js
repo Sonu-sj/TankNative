@@ -8,7 +8,7 @@ const SiteList = props => {
     console.log('props',props);	
     return (
     <View style={styles.siteList}>	
-     <AppText><Icon size={35} style={styles.iconStyles} onPress = {()=>props.changeSite(-1)} name="ios-arrow-back"/> Site-{props.name} <Icon size={35} style={styles.iconStyles} onPress = {()=>props.changeSite(1)} name="ios-arrow-forward"/></AppText>
+     <TouchableOpacity onPress = {()=>props.changeSite(-1)}><Icon size={35} style={styles.iconStyles} name="ios-arrow-back"/></TouchableOpacity><AppText>Site - {props.name}</AppText><TouchableOpacity onPress = {()=>props.changeSite(1)} ><Icon size={35} style={styles.iconStyles} name="ios-arrow-forward"/></TouchableOpacity>
     </View>
     )
 }
@@ -19,9 +19,11 @@ const styles = StyleSheet.create({
     color: 'white',
     marginLeft:10,
     marginRight:10,
+    marginTop:10
   },
   siteList: {
-    alignItems:'center'
+    flexDirection:'row',
+    justifyContent:'center'
   },
 });
 export default SiteList; 

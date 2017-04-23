@@ -65,10 +65,11 @@ class Dashboard extends Component {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
   render() {
+    console.log('DASH',this.props);
     return (
       <View>
         <TankScroll Site={this.state.currentSite} changeSite={this.changeSite} />
-        <TankList />
+        <TankList gotoDetails = {this.props.gotoDetails}/>
         </View>
     );
   }

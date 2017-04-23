@@ -1,33 +1,47 @@
 import React from 'react';
-import { Navigator, TouchableOpacity, Text,StyleSheet } from 'react-native'; 
+import { Navigator, TouchableOpacity, Text,StyleSheet,Image} from 'react-native'; 
 import Dashboard from './src/containers/Dashboard';
+import TankDetails from './src/containers/TankDetails';
 //import TankDetails from './containers/TankDetails';
 
-const HOME_ROUTE = { title: 'RNNYT' }; 
-const INTRO_ROUTE = { title: 'Welcome' }; 
+
+const HOME_ROUTE = { title: 'Dashboard' }; 
+const DETAILS_ROUTE = {title:'Details'};
+
 
 export default class App extends React.Component {
   renderScene(route, navigator) { 
-  if (route === INTRO_ROUTE) { 
+  if (route === HOME_ROUTE) { 
     return ( 
-      <Dashboard></Dashboard>
+      <Dashboard gotoDetails = {()=>{
+        console.log('routing');
+        navigator.push(DETAILS_ROUTE)
+      }}/>
     ); 
   } 
-  return (<Dashboard></Dashboard>); 
+  return (<TankDetails/>); 
 } 
   render() {
     return (
+    <Image source={require('./src/images/gradientbg.png')} style={styles.backgroundImage}>
     <Navigator style={styles.container}
-        initialRoute={INTRO_ROUTE} 
+        initialRoute={HOME_ROUTE} 
         renderScene={this.renderScene} 
       /> 
+     </Image> 
     );
   }
 }
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: 'rgba(72,186,194,1)',
     marginTop:20
-  }
+  },
+  backgroundImage: {
+        flex: 1,
+        width: null,
+        height: null,
+        resizeMode: 'cover'
+    }
 });
+ 

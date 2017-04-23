@@ -2,18 +2,16 @@
 
 import React from 'react';
 import Tankcard from './TankCard';
-import {View,Text,StyleSheet } from 'react-native'; 
+import {View,ScrollView,Text,StyleSheet } from 'react-native'; 
+import { VictoryBar} from "victory-native";
 const TankList = props => {
+	console.log('tlist',props)
 	return (
-		<View>
+		<ScrollView style={{height:500}}>
 			 {[...Array(7)].map((x, i) =>
-    			<View key={i}>
-				<View to="/tank"> 
-					<Tankcard key={i}/>
-				</View>
-			</View>
+					<Tankcard key={i} {...props}/>
   )}
-		</View>
+		</ScrollView>
 	)
 }
 
