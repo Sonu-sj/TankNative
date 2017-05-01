@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import {View} from 'react-native';
 import { VictoryBar,VictoryChart,VictoryArea} from "victory-native";
 
+import TankPieChart from '../components/TankPieChart.js';
+
 class TankDetails extends Component {
 
   render() {
@@ -11,6 +13,7 @@ class TankDetails extends Component {
 ];
     return (
       <View>
+      <TankPieChart/>
       <VictoryChart colorScale={colors} animate={{ duration: 500,easing: "bounce"}}>
       <VictoryBar style={{
   data: {fill:"green"}
