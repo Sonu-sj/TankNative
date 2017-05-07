@@ -1,6 +1,7 @@
 "use strict";
 
 import React, {Component} from 'react';
+import {View} from 'react-native';
 import {VictoryPie,VictoryLabel} from "victory-native";
 
 class TankPieChart extends Component {
@@ -9,8 +10,8 @@ class TankPieChart extends Component {
 		  {value: 400}
 		];
 
-		return (
-<VictoryPie colorScale ={["#5d81c7","#53f5b9"]}
+		return (		
+<VictoryPie  colorScale ={["#5d81c7","#53f5b9"]}
   data={[
     {title:"Inventory" , value: 200,text:18166,index:0},
     {title: "Ullage", value: 300,text:300,index:1}
