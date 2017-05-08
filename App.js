@@ -9,12 +9,10 @@ const HOME_ROUTE = { title: 'Dashboard' };
 const DETAILS_ROUTE = {title:'Details'};
 import { Permissions, Notifications } from 'expo';
 
-const PUSH_ENDPOINT = 'https://your-server.com/users/push-token';
-
+const PUSH_ENDPOINT = 'https://cbea177d.ngrok.io/api';
 async function registerForPushNotificationsAsync() {
   // Android remote notification permissions are granted during the app
   // install, so this will only ask on iOS
-  alert('running')
   let { status } = await Permissions.askAsync(Permissions.REMOTE_NOTIFICATIONS);
 
   // Stop here if the user did not grant permissions
@@ -37,13 +35,31 @@ async function registerForPushNotificationsAsync() {
         value: token,
        },
        user: {
-        username: 'Brent',
+        username: 'test',
        },
     }),
   });
 }
 
+
 export default class App extends React.Component {
+    componentWillMount() {
+    registerForPushNotificationsAsync();
+    this.state = {
+      route:HOME_ROUTE
+    }
+    // Handle notifications that are received or selected while the app
+    // is open. If the app was closed and then opened by tapping the
+    // notification (rather than just tapping the app icon to open it),
+    // this function will fire on the next tick after the app starts
+    // with the notification data.
+    this._notificationSubscription = Notifications.addListener(this._handleNotification);
+  }
+
+  _handleNotification = (notification) => {
+    alert('state');
+    this.setState({route: DETAILS_ROUTE});
+  };
   renderScene(route, navigator) { 
   if (route === HOME_ROUTE) { 
     return ( 
@@ -53,13 +69,15 @@ export default class App extends React.Component {
       }}/>
     ); 
   } 
-  return (<TankDetails/>); 
+  return (<TankDetails goBack={()=>{
+    navigator.pop();
+  }}/>); 
 } 
   render() {
     return (
     <Image source={require('./src/images/gradientbg.png')} style={styles.backgroundImage}>
     <Navigator style={styles.container}
-        initialRoute={HOME_ROUTE} 
+        initialRoute={this.state.route} 
         renderScene={this.renderScene} 
       /> 
      </Image> 

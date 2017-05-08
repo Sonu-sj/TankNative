@@ -17,12 +17,12 @@ class TankDetails extends Component {
     return (
       <View style={{"flex":1,"alignItems":"center"}}>
       <View style={styles.titleContainerStyle}>
-      <Icon size={35} style={styles.iconStyles} name="ios-arrow-back"/><AppText>T2-Diesel</AppText>
+      <Icon onPress ={()=>this.props.goBack()} size={35} style={styles.iconStyles} name="ios-arrow-back"/><AppText>T2-Diesel</AppText>
       </View>
       <TankPieChart/>
       <View style={{justifyContent:"space-between"}}>
       <LabelText>SITE NAME</LabelText>
-      <AppText>ABERDEEN BP -(102110)</AppText>
+      <AppText style={{fontSize:30,color:'white'}}>ABERDEEN BP -(102110)</AppText>
       <View style={styles.labelContainerStyle}>
       <LabelContainer label="TTSL" content="39 HRS"/>
       <LabelContainer label="MAX FILL" content ="22,000 GAL"/>
